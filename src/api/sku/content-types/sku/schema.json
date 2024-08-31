@@ -1,0 +1,59 @@
+{
+  "kind": "collectionType",
+  "collectionName": "skus",
+  "info": {
+    "singularName": "sku",
+    "pluralName": "skus",
+    "displayName": "bm_sku",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "price": {
+      "type": "decimal",
+      "required": true
+    },
+    "spu": {
+      "type": "biginteger",
+      "required": true
+    },
+    "desc": {
+      "type": "text"
+    },
+    "sku_image": {
+      "type": "media",
+      "multiple": true,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "seller_addr": {
+      "type": "string",
+      "required": true
+    },
+    "sales_amount": {
+      "type": "integer",
+      "required": false,
+      "default": 0
+    },
+    "uuid": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::bm-order.bm-order",
+      "mappedBy": "sku_uuid"
+    },
+    "shelf_status": {
+      "type": "integer",
+      "required": false,
+      "default": 1
+    }
+  }
+}

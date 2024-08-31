@@ -1,9 +1,9 @@
 'use strict';
 
 /**
- * blink router
+ * sku router
  */
 
 const { createCoreRouter } = require('@strapi/strapi').factories;
 
-module.exports = createCoreRouter('api::blink.blink');
+module.exports = createCoreRouter('api::sku.sku');

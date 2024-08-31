@@ -362,33 +362,79 @@ export interface AdminTransferTokenPermission extends Schema.CollectionType {
   };
 }
 
-export interface ApiBlinkBlink extends Schema.CollectionType {
-  collectionName: 'blinks';
+export interface ApiBmOrderBmOrder extends Schema.CollectionType {
+  collectionName: 'bm_orders';
   info: {
-    singularName: 'blink';
-    pluralName: 'blinks';
-    displayName: 'blink';
+    singularName: 'bm-order';
+    pluralName: 'bm-orders';
+    displayName: 'bm_order';
+    description: '';
   };
   options: {
     draftAndPublish: false;
   };
   attributes: {
-    title: Attribute.String;
-    desc: Attribute.String;
-    icon: Attribute.Media<'images', true>;
+    seller_addr: Attribute.String & Attribute.Required;
+    buyer_addr: Attribute.String & Attribute.Required;
+    order_price: Attribute.Decimal;
+    sku_amounts: Attribute.Integer;
+    deliever_addr: Attribute.Text;
+    buyer_phone: Attribute.String;
+    deliever_status: Attribute.Integer &
+      Attribute.Required &
+      Attribute.DefaultTo<0>;
+    sku_uuid: Attribute.Relation<
+      'api::bm-order.bm-order',
+      'manyToOne',
+      'api::sku.sku'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
-      'api::blink.blink',
+      'api::bm-order.bm-order',
       'oneToOne',
       'admin::user'
     > &
       Attribute.Private;
     updatedBy: Attribute.Relation<
-      'api::blink.blink',
+      'api::bm-order.bm-order',
       'oneToOne',
       'admin::user'
     > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiSkuSku extends Schema.CollectionType {
+  collectionName: 'skus';
+  info: {
+    singularName: 'sku';
+    pluralName: 'skus';
+    displayName: 'bm_sku';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    name: Attribute.String & Attribute.Required;
+    price: Attribute.Decimal & Attribute.Required;
+    spu: Attribute.BigInteger & Attribute.Required;
+    desc: Attribute.Text;
+    sku_image: Attribute.Media<'images', true> & Attribute.Required;
+    seller_addr: Attribute.String & Attribute.Required;
+    sales_amount: Attribute.Integer & Attribute.DefaultTo<0>;
+    uuid: Attribute.Relation<
+      'api::sku.sku',
+      'oneToMany',
+      'api::bm-order.bm-order'
+    >;
+    shelf_status: Attribute.Integer & Attribute.DefaultTo<1>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::sku.sku', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<'api::sku.sku', 'oneToOne', 'admin::user'> &
       Attribute.Private;
   };
 }
@@ -829,7 +875,8 @@ declare module '@strapi/types' {
       'admin::api-token-permission': AdminApiTokenPermission;
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
-      'api::blink.blink': ApiBlinkBlink;
+      'api::bm-order.bm-order': ApiBmOrderBmOrder;
+      'api::sku.sku': ApiSkuSku;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::content-releases.release': PluginContentReleasesRelease;

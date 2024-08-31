@@ -1,0 +1,47 @@
+{
+  "kind": "collectionType",
+  "collectionName": "bm_orders",
+  "info": {
+    "singularName": "bm-order",
+    "pluralName": "bm-orders",
+    "displayName": "bm_order",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "seller_addr": {
+      "type": "string",
+      "required": true
+    },
+    "buyer_addr": {
+      "type": "string",
+      "required": true
+    },
+    "order_price": {
+      "type": "decimal"
+    },
+    "sku_amounts": {
+      "type": "integer"
+    },
+    "deliever_addr": {
+      "type": "text"
+    },
+    "buyer_phone": {
+      "type": "string"
+    },
+    "deliever_status": {
+      "type": "integer",
+      "required": true,
+      "default": 0
+    },
+    "sku_uuid": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::sku.sku",
+      "inversedBy": "uuid"
+    }
+  }
+}
