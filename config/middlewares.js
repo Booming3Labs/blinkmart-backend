@@ -2,12 +2,12 @@ module.exports = [
   'strapi::logger',
   'strapi::errors',
   'strapi::security',
-  'strapi::cors',
+  // 'strapi::cors',
   'strapi::poweredBy',
   {
     name: 'strapi::cors',
     config: {
-      enabled: true, 
+      enabled: true, // deprecated in v4.25.8
       headers: '*',
       origin: ['*']
     }
