@@ -54,7 +54,7 @@ module.exports = ({ env }) => {
         port: env.int('PGPORT', 5432),
         database: env('POSTGRES_DB', 'strapi'),
         user: env('PGUSER', 'strapi'),
-        POSTGRES_PASSWORD: env('DATABASE_PASSWORD', 'strapi'),
+        password: env('POSTGRES_PASSWORD', 'strapi'),
         ssl: env.bool('DATABASE_SSL', false) && {
           key: env('DATABASE_SSL_KEY', undefined),
           cert: env('DATABASE_SSL_CERT', undefined),

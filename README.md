@@ -1,3 +1,28 @@
+一.本地运行blinkmart-backend
+
+    1.安装pgsql，并自行创建railway数据库
+
+    2.根目录添加.env文件
+        HOST=0.0.0.0
+        PORT=1337
+        APP_KEYS=c42MCpymnvOvdMyeQaf1ew==,bSmjd8CEktWoOT/FXyfReg==,MM3tdxS6hBaHj12KkT4FgA==,jDLZs5eQJzTBC1/xJi8fPQ==
+        API_TOKEN_SALT=kRF2LS2Z56Qn+f8iIKBJXA==
+        ADMIN_JWT_SECRET=f0HKP3CraVg2+5GmbByJmA==
+        TRANSFER_TOKEN_SALT=d9WkdaVMgQY2d1dLKBBZCQ==
+        JWT_SECRET=Owbiye+4gyo0ZW4q/Yz6rQ==
+        # Database
+        DATABASE_CLIENT="postgres"
+        PGHOST="localhost"
+        PGPORT="5432"
+        POSTGRES_DB="railway"
+        PGUSER="postgres"
+        DATABASE_PASSWORD="root"
+        DATABASE_SSL="false"
+
+二、apifox接口文档
+https://apifox.com/apidoc/shared-9603509a-2e6e-4143-a55a-775e7bd8e321
+
+
 # 🚀 Getting started with Strapi
 
 Strapi comes with a full featured [Command Line Interface](https://docs.strapi.io/dev-docs/cli) (CLI) which lets you scaffold and manage your project in seconds.
