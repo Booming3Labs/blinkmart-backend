@@ -1,0 +1,25 @@
+{
+  "kind": "singleType",
+  "collectionName": "bm_imgs",
+  "info": {
+    "singularName": "bm-img",
+    "pluralName": "bm-imgs",
+    "displayName": "bm_img"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "sku_img": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": true
+    }
+  }
+}

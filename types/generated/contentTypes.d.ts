@@ -362,6 +362,36 @@ export interface AdminTransferTokenPermission extends Schema.CollectionType {
   };
 }
 
+export interface ApiBmImgBmImg extends Schema.SingleType {
+  collectionName: 'bm_imgs';
+  info: {
+    singularName: 'bm-img';
+    pluralName: 'bm-imgs';
+    displayName: 'bm_img';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    sku_img: Attribute.Media<'images' | 'files' | 'videos' | 'audios', true>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::bm-img.bm-img',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::bm-img.bm-img',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiBmOrderBmOrder extends Schema.CollectionType {
   collectionName: 'bm_orders';
   info: {
@@ -383,11 +413,12 @@ export interface ApiBmOrderBmOrder extends Schema.CollectionType {
     deliever_status: Attribute.Integer &
       Attribute.Required &
       Attribute.DefaultTo<0>;
-    sku_uuid: Attribute.Relation<
+    sku_rel: Attribute.Relation<
       'api::bm-order.bm-order',
       'manyToOne',
       'api::sku.sku'
     >;
+    order_id: Attribute.String & Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -424,12 +455,13 @@ export interface ApiSkuSku extends Schema.CollectionType {
     sku_image: Attribute.Media<'images', true> & Attribute.Required;
     seller_addr: Attribute.String & Attribute.Required;
     sales_amount: Attribute.Integer & Attribute.DefaultTo<0>;
-    uuid: Attribute.Relation<
+    order_rel: Attribute.Relation<
       'api::sku.sku',
       'oneToMany',
       'api::bm-order.bm-order'
     >;
     shelf_status: Attribute.Integer & Attribute.DefaultTo<1>;
+    sku_id: Attribute.Text;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<'api::sku.sku', 'oneToOne', 'admin::user'> &
@@ -875,6 +907,7 @@ declare module '@strapi/types' {
       'admin::api-token-permission': AdminApiTokenPermission;
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
+      'api::bm-img.bm-img': ApiBmImgBmImg;
       'api::bm-order.bm-order': ApiBmOrderBmOrder;
       'api::sku.sku': ApiSkuSku;
       'plugin::upload.file': PluginUploadFile;

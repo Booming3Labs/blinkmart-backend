@@ -6965,6 +6965,11 @@ node-schedule@2.1.1:
     long-timeout "0.1.1"
     sorted-array-functions "^1.3.0"
 
+node-uuid@^1.4.8:
+  version "1.4.8"
+  resolved "https://registry.npmmirror.com/node-uuid/-/node-uuid-1.4.8.tgz"
+  integrity sha512-TkCET/3rr9mUuRp+CpO7qfgT++aAxfDRaalQhwPFzI9BY/2rCDn6OfpZOVggi1AXfTPpfkTrg5f5WQx5G1uLxA==
+
 nodemailer-fetch@1.6.0:
   version "1.6.0"
   resolved "https://registry.npmmirror.com/nodemailer-fetch/-/nodemailer-fetch-1.6.0.tgz"

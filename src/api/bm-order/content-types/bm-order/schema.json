@@ -37,11 +37,15 @@
       "required": true,
       "default": 0
     },
-    "sku_uuid": {
+    "sku_rel": {
       "type": "relation",
       "relation": "manyToOne",
       "target": "api::sku.sku",
-      "inversedBy": "uuid"
+      "inversedBy": "order_rel"
+    },
+    "order_id": {
+      "type": "string",
+      "required": true
     }
   }
 }

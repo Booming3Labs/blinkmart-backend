@@ -44,16 +44,21 @@
       "required": false,
       "default": 0
     },
-    "uuid": {
+    "order_rel": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::bm-order.bm-order",
-      "mappedBy": "sku_uuid"
+      "mappedBy": "sku_rel"
     },
     "shelf_status": {
       "type": "integer",
       "required": false,
       "default": 1
+    },
+    "sku_id": {
+      "type": "text",
+      "required": false,
+      "unique": false
     }
   }
 }

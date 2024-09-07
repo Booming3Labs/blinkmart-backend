@@ -6,14 +6,18 @@
 
 const { createCoreService } = require('@strapi/strapi').factories;
 const common = require('../../../common');
+const uuidUtil =  require('node-uuid');
 module.exports = createCoreService('api::sku.sku'
     ,({strapi}) =>({
 
     // 创建商品
+    // todo 限制ip请求次数
     create: async (ctx) => {
+        
         let skuInfo = ctx.request.body.data;
         // 校验参数
         strapi.service('api::sku.sku').checkParam(skuInfo);
+        skuInfo.sku_id = uuidUtil.v1();
         await strapi.db.query('api::sku.sku').create({
             data: skuInfo
         })
